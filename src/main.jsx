@@ -1,17 +1,27 @@
-//React Events 
 
-import React from "react";
+// Render React component using conditions 
+
 import { createRoot } from "react-dom/client";
 
-function TakeAshot(){
-    const shoot = () => {
-        alert("Great Shot ! ..")
-    }
-
+function MissedGoal(){
     return(
-        <button onClick= {shoot}>Take_Your_Shot</button>
+        alert("You Missed Goal")
     )
 }
 
-createRoot(document.getElementById('root')).render(<TakeAshot/>)
+function MadeGoal(){
+    return(
+        alert("Nailed it .. , A Goal")
+    )
+}
 
+function CheckGoal(props){
+    const isGoal = props.isGoal;
+    if(isGoal){
+        return <MissedGoal/>;
+    }
+    return <MadeGoal/>;
+
+}
+
+createRoot(document.getElementById('root')).render(<CheckGoal isGoal = {true}/>)
