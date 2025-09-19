@@ -1,59 +1,59 @@
 
-//Controlled Component (Repetitive code )
-
-import React ,{useState} from "react";
+//Authentication 
+import React ,{useState}  from "react";
 import { createRoot } from "react-dom/client";
 
 function Authentication(){
-    //Declare seprate state to store Values 
-    const [name , setName] = useState("");
-    const [password, setPassword] = useState("");
-    const [emailId, setemailId] = useState("");
+    const [formData, setformData] = useState({
+        name :"",
+        password :"",
+        emailId :"",
+    });
 
-    //Updates the changes when user Type Somethings
-    function HandleUpdates(event){
-        const {name, value} = event.target;
 
-        if(name == "username"){
-            setName(value);
-        }
-        else if(name == "password"){
-            setPassword(value);
-        }else if(name == "emailId"){
-            setemailId(value);
-        }
+    function HandleChanges(event){
+        const {name , value} = event.target;
+
+        setformData((prev) =>({
+            ...prev,
+            [name] : value
+        }));
     }
 
     return(
         <div>
             <input 
             type="Text"
-            name = "username"
-            placeholder="Enter Name "
-            value={name}
-            onChange={HandleUpdates}/>
+            name="name"
+            placeholder="Enter Name"
+            value={formData.name}
+            onChange={HandleChanges}/>
             <br/>
             <br/>
             <br/>
+
             <input 
             type="password"
             name="password"
             placeholder="Enter password"
-            value={password}
-            onChange={HandleUpdates}/>
+            value={formData.password}
+            onChange={HandleChanges}/>
             <br/>
             <br/>
             <br/>
             <input 
-            type="emailId"
+            type="email"
             name="emailId"
-            placeholder="Enter-EmailID"
-            value={emailId}
-            onChange={HandleUpdates}/>
+            placeholder="Enter emailId"
+            value={formData.emailId}
+            onChange={HandleChanges}/>
+            <br/>
+            <br/>
+            <br/>
 
-            <p>Name :{name}</p>
-            <p>password : {password}</p>
-            <p>Email-Id : {emailId}</p>
+            <p>Name : {formData.name}</p>
+            <p>Password : {formData.password}</p>
+            <p>EmailId : {formData.emailId}</p>
         </div>
     )
 }
