@@ -1,16 +1,22 @@
+//Controlled cOMPONENT IN rEACT 
 
-//React -Form (basic-version)
 
+import React, {useState} from "react";
 import { createRoot } from "react-dom/client";
+function NameForm(){
+    //Declare a state to store the values 
+    const [name , setName] = useState("")
 
-function Form(){
+    //Update the state when user type Something 
+    function HandleChanges(event){
+        setName(event.target.value);                //etv
+    }
     return(
-        <form>
-            <label>
-                Enter_Your_Name
-                <input type="text"/>
-            </label>
-        </form>
+        <div>
+            <input type="Text" value= {name} onChange={HandleChanges}/>
+            <p>Your Name is : {name}</p>
+        </div>
     )
 }
-createRoot(document.getElementById('root')).render(<Form/>)
+
+createRoot(document.getElementById('root')).render(<NameForm/>)
