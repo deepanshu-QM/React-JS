@@ -1,61 +1,72 @@
 
-//Authentication 
-import React ,{useState}  from "react";
+//Authentication-Box with css
+import React, {useState} from "react";
 import { createRoot } from "react-dom/client";
 
 function Authentication(){
-    const [formData, setformData] = useState({
-        name :"",
-        password :"",
-        emailId :"",
+    const [formData, setForm] = useState({
+        name: "",
+        password: "",
+        email: "",
     });
+    function HandleCheck(event){
+        const {name, value} = event.target;
 
-
-    function HandleChanges(event){
-        const {name , value} = event.target;
-
-        setformData((prev) =>({
+        setForm((prev) => ({
             ...prev,
-            [name] : value
+            [name]:value
         }));
-    }
+}
 
-    return(
-        <div>
-            <input 
-            type="Text"
-            name="name"
-            placeholder="Enter Name"
-            value={formData.name}
-            onChange={HandleChanges}/>
-            <br/>
-            <br/>
-            <br/>
+const containerStyle = {
+    backgroundColor:"#e0d608",
+    margin:"50px auto",
+    padding:"30px",
+    height:"500px",
+    width:"500px",
+    border:"solid 2px",
+    textAlign :"center",
+};
 
-            <input 
-            type="password"
-            name="password"
-            placeholder="Enter password"
-            value={formData.password}
-            onChange={HandleChanges}/>
-            <br/>
-            <br/>
-            <br/>
-            <input 
-            type="email"
-            name="emailId"
-            placeholder="Enter emailId"
-            value={formData.emailId}
-            onChange={HandleChanges}/>
-            <br/>
-            <br/>
-            <br/>
+const inputStyle = {
+    padding : "10px",
+    margin :"20px",
+    width:"300px",
+    textAlign:"center"
+}
+return(
+    <div style= {containerStyle}>
+        <input 
+        type="text"
+        name = "name"
+        placeholder="Enter Name "
+        value = {formData.name}
+        onChange = {HandleCheck} 
+        style = {inputStyle}/>
+        <br/>
 
-            <p>Name : {formData.name}</p>
-            <p>Password : {formData.password}</p>
-            <p>EmailId : {formData.emailId}</p>
-        </div>
-    )
+        <input 
+        type="password"
+        name = "password"
+        placeholder="Enter Password "
+        value = {formData.password}
+        onChange = {HandleCheck} 
+         style = {inputStyle}/>
+        <br/>
+
+        <input 
+        type="email"
+        name = "email"
+        placeholder="Enter Email "
+        value = {formData.email}
+        onChange = {HandleCheck}
+         style = {inputStyle}/>
+        <br/><br/>
+        <p>Name : {formData.name}</p>
+        <p>Password : {formData.password}</p>
+        <p>Email : {formData.email}</p>
+    </div>
+)
 }
 
 createRoot(document.getElementById('root')).render(<Authentication/>)
