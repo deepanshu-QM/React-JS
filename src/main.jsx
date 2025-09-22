@@ -1,72 +1,32 @@
 
-//Authentication-Box with css
-import React, {useState} from "react";
-import { createRoot } from "react-dom/client";
+//React Submit Form -->
+//You can control the submit action by adding an event handler in the onSubmit attribute for the form
 
-function Authentication(){
-    const [formData, setForm] = useState({
-        name: "",
-        password: "",
-        email: "",
-    });
-    function HandleCheck(event){
-        const {name, value} = event.target;
+import React, {useState} from 'react';
+import { createRoot } from 'react-dom/client';
 
-        setForm((prev) => ({
-            ...prev,
-            [name]:value
-        }));
+function Form(){
+    const [name, setName] = useState("");
+
+    function HandleUpdate(event){
+        setName(event.target.value);
+    }
+
+    function HandleSubmit(event){
+        event.preventDefault();
+        alert(name);
+    }
+
+    return(
+        <form onSubmit={HandleSubmit}>
+            <lablel>Enter Your Name : 
+                <input type='text' value={name} onChange={HandleUpdate}/>
+            </lablel>
+
+            <input type ='submit'/>
+        </form>
+    )
+
 }
 
-const containerStyle = {
-    backgroundColor:"#e0d608",
-    margin:"50px auto",
-    padding:"30px",
-    height:"500px",
-    width:"500px",
-    border:"solid 2px",
-    textAlign :"center",
-};
-
-const inputStyle = {
-    padding : "10px",
-    margin :"20px",
-    width:"300px",
-    textAlign:"center"
-}
-return(
-    <div style= {containerStyle}>
-        <input 
-        type="text"
-        name = "name"
-        placeholder="Enter Name "
-        value = {formData.name}
-        onChange = {HandleCheck} 
-        style = {inputStyle}/>
-        <br/>
-
-        <input 
-        type="password"
-        name = "password"
-        placeholder="Enter Password "
-        value = {formData.password}
-        onChange = {HandleCheck} 
-         style = {inputStyle}/>
-        <br/>
-
-        <input 
-        type="email"
-        name = "email"
-        placeholder="Enter Email "
-        value = {formData.email}
-        onChange = {HandleCheck}
-         style = {inputStyle}/>
-        <br/><br/>
-        <p>Name : {formData.name}</p>
-        <p>Password : {formData.password}</p>
-        <p>Email : {formData.email}</p>
-    </div>
-)
-}
-
-createRoot(document.getElementById('root')).render(<Authentication/>)
+createRoot(document.getElementById('root')).render(<Form/>)
