@@ -1,32 +1,49 @@
 
-//React Submit Form -->
-//You can control the submit action by adding an event handler in the onSubmit attribute for the form
 
-import React, {useState} from 'react';
+// Text-Area
+
+import React, { useState } from 'react';
 import { createRoot } from 'react-dom/client';
 
-function Form(){
-    const [name, setName] = useState("");
+function TextArea() {
+  const [mytext, setmyText] = useState("");
 
-    function HandleUpdate(event){
-        setName(event.target.value);
-    }
+  function HandleUpdate(event) {
+    setmyText(event.target.value);
+  }
 
-    function HandleSubmit(event){
-        event.preventDefault();
-        alert(name);
-    }
+  function HandleSubmit(event) {
+    event.preventDefault();
+    alert("Submitted Content: " + mytext);
+  }
 
-    return(
-        <form onSubmit={HandleSubmit}>
-            <lablel>Enter Your Name : 
-                <input type='text' value={name} onChange={HandleUpdate}/>
-            </lablel>
+  const content = {
+    backgroundColor: "#e0d608",
+    margin: "100px",
+    padding: "50px",
+    textAlign: "center",
+  };
 
-            <input type ='submit'/>
-        </form>
-    )
+  const content2 = {
+    height: "100px",
+    width: "500px",
+    border: "solid 2px",
+  };
 
+  return (
+    <form style={content} onSubmit={HandleSubmit}>
+      <label>
+        Write Something : <br />
+        <textarea
+          value={mytext}
+          onChange={HandleUpdate}
+          style={content2}
+        />
+        <p>Content : {mytext}</p>
+        <button type="submit">Submit</button>
+      </label>
+    </form>
+  );
 }
 
-createRoot(document.getElementById('root')).render(<Form/>)
+createRoot(document.getElementById('root')).render(<TextArea />);
